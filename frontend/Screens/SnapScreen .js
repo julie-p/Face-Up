@@ -120,7 +120,7 @@ function SnapScreen (props) {
                             name: 'avatar.jpg'
                         });
 
-                        const response = await fetch('http://192.168.1.16:3000/upload', {
+                        const response = await fetch('http://192.***.1.**:3000/upload', {
                             method: 'POST',
                             body: data
                         });

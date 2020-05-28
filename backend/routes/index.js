@@ -9,9 +9,9 @@ const request = require('sync-request');
 var cloudinary = require('cloudinary').v2;
 
 cloudinary.config({ 
-  cloud_name: 'juliep', 
-  api_key: '319764196268319', 
-  api_secret: 'yH4VRTK-rxmSx8TQ9dj0ZmWSX0g' 
+  cloud_name: '*****p', 
+  api_key: '31976419626****9', 
+  api_secret: 'yH4VRTK-rxmSx8TQ9dj0Zm****' 
 });
 
 //Détection des visages
@@ -26,16 +26,6 @@ const params = {
       'emotion,hair,makeup,occlusion,accessories,blur,exposure,noise'
 };
 
-/* request('POST', URL, options); {
-if (error) {
-  console.log('Error: ', error);
-  return;
-}
-let jsonResponse = JSON.stringify(JSON.parse(body), null, '  ');
-console.log('JSON Response\n');
-console.log(jsonResponse);
-};
- */
 router.post('/upload', async function(req, res, next) {
 
   let imagePath = './tmp/'+uniqid()+'.jpg';
@@ -58,8 +48,6 @@ router.post('/upload', async function(req, res, next) {
     let vision = request('POST', uriBase, options);
     let resultVision = vision.getBody();
     resultVision = JSON.parse(resultVision);
-    console.log(resultVision);
-    console.log('/////////////////////////////////', resultVision[0].faceAttributes.hair);
 
     let gender;
     let age;
@@ -96,7 +84,6 @@ router.post('/upload', async function(req, res, next) {
           break;
       }
     };
-    console.log(hair);
     res.json({url: resultCloudinary.url, gender, age, glasses, emotions, beard, hair, smile});
   
   } else {
